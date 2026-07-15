@@ -100,7 +100,7 @@ const projects: Project[] = [
     links: [
       {
         label: "GitHub Repository",
-        href: "https://github.com/KristoPraveejiny/OrangeHRM-Login-Automation-Framework",
+        href: "https://github.com/KristoPraveejiny/TestNG-practice-with-Orange-HRM-website-.git",
         icon: Github,
         variant: "primary"
       },
@@ -161,7 +161,7 @@ const projects: Project[] = [
     links: [
       {
         label: "GitHub Repository",
-        href: "https://github.com/KristoPraveejiny/REST-API-Testing-ReqRes-API",
+        href: "https://github.com/KristoPraveejiny/postman-reqres-api-testing.git",
         icon: Github,
         variant: "primary"
       },
@@ -221,7 +221,7 @@ const projects: Project[] = [
     links: [
       {
         label: "GitHub Repository",
-        href: "https://github.com/KristoPraveejiny/Buggy-Cars-Rating-Manual-Testing",
+        href: "https://github.com/KristoPraveejiny/Buggy-Cars-Rating_Manual-Testing.git",
         icon: Github,
         variant: "primary"
       }
@@ -276,13 +276,13 @@ const projects: Project[] = [
     links: [
       {
         label: "Automation Repository",
-        href: "https://github.com/KristoPraveejiny/SauceDemo-Automation",
+        href: "https://github.com/KristoPraveejiny/Sauce_demo-automation-testing-with-selenium.git",
         icon: Github,
         variant: "primary"
       },
       {
         label: "Manual Testing Repository",
-        href: "https://github.com/KristoPraveejiny/SauceDemo-Manual-Testing",
+        href: "https://github.com/KristoPraveejiny/manual-testing-saucedemo.git",
         icon: Github,
         variant: "outline"
       }
@@ -339,13 +339,13 @@ const projects: Project[] = [
     links: [
       {
         label: "Development Repository",
-        href: "https://github.com/KristoPraveejiny/Annam-Integrated-Farm-Management-System",
+        href: "https://github.com/KristoPraveejiny/Innovista-final.git",
         icon: Github,
         variant: "primary"
       },
       {
         label: "Testing Repository",
-        href: "https://github.com/KristoPraveejiny/Annam-Farm-Manual-Testing",
+        href: "https://github.com/KristoPraveejiny/Manual_testing_Innovista.git",
         icon: Github,
         variant: "outline"
       }

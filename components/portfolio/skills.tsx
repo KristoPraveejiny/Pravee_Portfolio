@@ -2,50 +2,106 @@
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Badge } from "@/components/ui/badge"
-import { Code, Database, Wrench } from "lucide-react"
+import { Code, Database, Wrench, TestTube, FileText, Globe, PlugZap, Layers3, GitBranch, BriefcaseBusiness } from "lucide-react"
 
 const skillCategories = [
   {
-    title: "Programming",
+    title: "Testing Skills",
     icon: Code,
     skills: [
-      { name: "Java", level: 80 },
-      { name: "JavaScript", level: 75 },
-      { name: "PHP", level: 75 },
-      { name: "Python", level: 60 },
-      { name: "C / C++", level: 55 }
+      { name: "Manual Testing", level: 95 },
+      { name: "Functional Testing", level: 92 },
+      { name: "Test Case Design", level: 94 },
+      { name: "Test Planning", level: 90 },
+      { name: "Test Execution", level: 93 },
+      { name: "Defect Reporting", level: 92 },
+      { name: "Bug Life Cycle", level: 88 }
     ]
   },
   {
-    title: "Web & Database",
+    title: "Testing Concepts",
+    icon: TestTube,
+    skills: [
+      { name: "Regression Testing", level: 90 },
+      { name: "Smoke Testing", level: 88 },
+      { name: "Sanity Testing", level: 86 },
+      { name: "Exploratory Testing", level: 89 },
+      { name: "Black Box Testing", level: 91 }
+    ]
+  },
+  {
+    title: "Automation Testing",
+    icon: PlugZap,
+    skills: [
+      { name: "Selenium WebDriver", level: 92 },
+      { name: "TestNG", level: 90 },
+      { name: "Maven", level: 88 },
+      { name: "Java Automation Testing", level: 90 },
+      { name: "Explicit Waits", level: 89 },
+      { name: "Assertions", level: 91 },
+      { name: "Apache POI", level: 86 },
+      { name: "POM", level: 88 },
+      { name: "Data-Driven Testing", level: 89 }
+    ]
+  },
+  {
+    title: "API Testing",
+    icon: Globe,
+    skills: [
+      { name: "Postman", level: 92 },
+      { name: "REST API Testing", level: 91 },
+      { name: "HTTP Methods", level: 90 },
+      { name: "CRUD Operations", level: 88 },
+      { name: "Status Code Validation", level: 92 },
+      { name: "JSON Validation", level: 90 },
+      { name: "Authentication Testing", level: 89 }
+    ]
+  },
+  {
+    title: "Programming Languages",
+    icon: FileText,
+    skills: [
+      { name: "Java", level: 90 },
+      { name: "JavaScript", level: 84 },
+      { name: "SQL", level: 88 },
+      { name: "HTML", level: 92 },
+      { name: "CSS", level: 91 },
+      { name: "PHP", level: 86 }
+    ]
+  },
+  {
+    title: "Database & Tools",
     icon: Database,
     skills: [
-      { name: "HTML / CSS", level: 90 },
-      { name: "MySQL", level: 80 },
-      { name: "React", level: 65 },
-      { name: "MongoDB", level: 60 }
+      { name: "MySQL", level: 90 },
+      { name: "PostgreSQL", level: 82 },
+      { name: "SQL Queries", level: 89 },
+      { name: "CRUD Operations", level: 87 },
+      { name: "Database Validation", level: 88 },
+      { name: "Git", level: 90 },
+      { name: "GitHub", level: 92 },
+      { name: "VS Code", level: 95 },
+      { name: "IntelliJ IDEA", level: 86 }
     ]
   },
   {
-    title: "Tools & Concepts",
-    icon: Wrench,
+    title: "Methodologies",
+    icon: BriefcaseBusiness,
     skills: [
-      { name: "Problem Solving", level: 90 },
-      { name: "Software Testing / QA", level: 85 },
-      { name: "GitHub", level: 75 },
-      { name: "UI/UX Design", level: 70 }
+      { name: "SDLC", level: 90 },
+      { name: "STLC", level: 92 },
+      { name: "Agile Scrum", level: 88 }
     ]
   }
 ]
 
 const softSkills = [
+  "Attention to Detail",
+  "Analytical Thinking",
   "Problem Solving",
-  "Teamwork & Collaboration",
+  "Team Collaboration",
   "Communication Skills",
-  "Time Management",
-  "Critical Thinking",
-  "Adaptability",
-  "Attention to Detail"
+  "Quick Learning Ability"
 ]
 
 function SkillBar({ name, level }: { name: string; level: number }) {
@@ -71,13 +127,11 @@ export function Skills() {
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-16">
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 neon-chip">
-            What I Work With
+            2021 (2022)
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Technical Skills
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Technical Skills</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Technologies and tools I use to bring ideas to life
+            Technical skills, testing experience, and QA tooling aligned to my portfolio work
           </p>
         </div>
 

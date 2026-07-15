@@ -36,7 +36,7 @@ export function Hero() {
       {/* Gradient blur background shapes */}
       <div className="gradient-blur w-96 h-96 bg-primary/40 -top-48 -right-48 absolute animate-float" />
       <div className="gradient-blur w-80 h-80 bg-primary/30 bottom-20 -left-40 absolute" style={{ animationDelay: "2s" }} />
-      
+
       <div className="max-w-5xl mx-auto relative z-10">
         <div className="text-center mb-16 animate-fade-in-up">
           <div className="mb-8 flex justify-center">
@@ -59,52 +59,52 @@ export function Hero() {
               </div>
             </div>
           </div>
-          
+
           <div className="mb-6">
             <span className="inline-block px-4 py-2 text-sm font-medium bg-secondary/70 text-secondary-foreground rounded-full neon-chip backdrop-blur-md">
               Available for opportunities
             </span>
           </div>
-          
+
           <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold tracking-tight mb-6 text-balance">
             Hi, I&apos;m{" "}
             <span className="bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
               Sabaratnam Kristo Praveejiny
             </span>
           </h1>
-          
+
           <p className="text-xl md:text-2xl text-muted-foreground mb-3">
             Software Quality Assurance | Full-Stack Developer
           </p>
-          
+
           <div className="flex items-center justify-center gap-2 mb-4">
             <span className="inline-flex items-center gap-1.5 px-3 py-1 text-sm font-medium bg-primary/10 text-blue-200 rounded-full neon-chip">
               <Shield className="h-3.5 w-3.5" />
               ISTQB Certified Tester
             </span>
           </div>
-          
+
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-10 text-pretty leading-relaxed">
-            An undergraduate in Industrial Information Technology at Uva Wellassa University, 
-            with a strong passion for Software Quality Assurance, Testing, and Full-Stack Development. 
-            I am dedicated to ensuring software reliability through effective testing practices while 
-            also building modern, user-friendly, and efficient web applications. With a growing interest 
-            in both quality engineering and software development, I strive to create innovative digital 
-            solutions that deliver meaningful user experiences.
+            Detail-oriented Industrial Information Technology undergraduate with hands-on experience in Manual Testing, Au
+            tomation Testing, and API Testing. ISTQB Certified Tester Foundation Level (CTFL) with practical knowledge of
+            test case design, test execution, defect reporting, regression testing, and software quality processes. Experienced in
+            developing Selenium WebDriver automation test scripts using Java, TestNG, and Maven. Familiar with Page Object
+            Model (POM) framework, REST API testing using Postman, and SQL database validation. Seeking a QA Testing
+            Internship opportunity to apply analytical skills and contribute to delivering reliable, high-quality software products.
           </p>
-          
+
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Button 
-              size="lg" 
+            <Button
+              size="lg"
               className="gap-2 px-8 neon-button bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400"
               onClick={() => scrollToSection("projects")}
             >
               View Projects
               <ArrowDown className="h-4 w-4" />
             </Button>
-            <Button 
-              variant="outline" 
-              size="lg" 
+            <Button
+              variant="outline"
+              size="lg"
               className="gap-2 px-8 border-primary/40 bg-primary/5 hover:bg-primary/15 hover:text-blue-100 neon-button"
               onClick={() => scrollToSection("contact")}
             >
@@ -116,7 +116,7 @@ export function Hero() {
 
         <div className="grid md:grid-cols-3 gap-6">
           {traits.map((trait, index) => (
-            <div 
+            <div
               key={trait.title}
               className="p-6 rounded-2xl neon-panel neon-border card-hover"
               style={{ animationDelay: `${index * 0.1}s` }}
