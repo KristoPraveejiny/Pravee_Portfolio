@@ -1,95 +1,474 @@
 "use client"
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
-import { Badge } from "@/components/ui/badge"
-import { Users, Calendar, MessageSquare, LayoutDashboard, FileText, Briefcase, Star, Github } from "lucide-react"
-import { Button } from "@/components/ui/button"
 import Link from "next/link"
 import { useEffect, useRef, useState } from "react"
+import type { LucideIcon } from "lucide-react"
+import { Badge } from "@/components/ui/badge"
+import { Button } from "@/components/ui/button"
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card"
+import {
+  Bug,
+  CheckCircle,
+  Code2,
+  Database,
+  ExternalLink,
+  FileText,
+  Github,
+  LayoutDashboard,
+  Search,
+  Server,
+  Shield,
+  Star,
+  TestTube,
+  Users
+} from "lucide-react"
 
-const features = [
+type ProjectLink = {
+  label: string
+  href?: string
+  icon: LucideIcon
+  variant?: "primary" | "outline"
+}
+
+type ProjectFeature = {
+  icon: LucideIcon
+  title: string
+  description: string
+}
+
+type Project = {
+  role: string
+  title: string
+  description: string
+  overview: string
+  badges: string[]
+  techStack: { name: string; color: string }[]
+  features: ProjectFeature[]
+  links: ProjectLink[]
+  featured?: boolean
+}
+
+const projects: Project[] = [
   {
-    icon: Users,
-    title: "Multi-role System",
-    description: "Customer, Provider & Admin roles with secure role-based access control"
+    role: "QA Automation Tester",
+    title: "OrangeHRM Login Automation Framework",
+    description:
+      "Developed a Selenium WebDriver automation testing framework for the OrangeHRM login module using Java, TestNG, Maven, Page Object Model (POM), and Apache POI.",
+    overview:
+      "Implemented Data-Driven Testing, assertions, explicit waits, and reusable automation scripts to validate login functionality.",
+    badges: ["Java", "Selenium WebDriver", "TestNG"],
+    techStack: [
+      { name: "Java", color: "bg-red-500/15 text-red-200 border-red-300/35" },
+      { name: "Selenium WebDriver", color: "bg-green-500/15 text-green-200 border-green-300/35" },
+      { name: "TestNG", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
+      { name: "Maven", color: "bg-orange-500/15 text-orange-200 border-orange-300/35" },
+      { name: "POM", color: "bg-purple-500/15 text-purple-200 border-purple-300/35" },
+      { name: "Apache POI", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" }
+    ],
+    features: [
+      {
+        icon: TestTube,
+        title: "Data-Driven Testing",
+        description: "Multiple test data sets managed through Apache POI integration"
+      },
+      {
+        icon: Shield,
+        title: "Page Object Model",
+        description: "Modular and maintainable automation design for login workflows"
+      },
+      {
+        icon: CheckCircle,
+        title: "Assertions & Waits",
+        description: "Reliable validation with assertions and explicit waits"
+      },
+      {
+        icon: Code2,
+        title: "Reusable Scripts",
+        description: "Reusable automation components for efficient test development"
+      },
+      {
+        icon: Bug,
+        title: "TestNG Framework",
+        description: "Structured execution with TestNG annotations and reporting"
+      },
+      {
+        icon: Database,
+        title: "Apache POI Integration",
+        description: "Excel-based test data management for login coverage"
+      }
+    ],
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/KristoPraveejiny/OrangeHRM-Login-Automation-Framework",
+        icon: Github,
+        variant: "primary"
+      },
+      {
+        label: "View Project",
+        icon: ExternalLink,
+        variant: "outline"
+      }
+    ],
+    featured: true
   },
   {
-    icon: FileText,
-    title: "Quotation Management",
-    description: "Streamlined service booking and quotation request handling"
+    role: "API Tester",
+    title: "REST API Testing - ReqRes API",
+    description:
+      "Performed REST API testing using Postman by creating and executing test cases for GET, POST, PUT, PATCH, and DELETE requests.",
+    overview:
+      "Validated response status codes, JSON responses, authentication, and API functionality through positive and negative test scenarios.",
+    badges: ["Postman", "REST API", "JSON"],
+    techStack: [
+      { name: "Postman", color: "bg-orange-500/15 text-orange-200 border-orange-300/35" },
+      { name: "REST API", color: "bg-green-500/15 text-green-200 border-green-300/35" },
+      { name: "JSON", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
+      { name: "HTTP Methods", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" }
+    ],
+    features: [
+      {
+        icon: Server,
+        title: "HTTP Methods Testing",
+        description: "GET, POST, PUT, PATCH, and DELETE request coverage"
+      },
+      {
+        icon: CheckCircle,
+        title: "Response Validation",
+        description: "Status codes, response payloads, and data integrity checks"
+      },
+      {
+        icon: Shield,
+        title: "Authentication Testing",
+        description: "Token-based access and auth behavior validation"
+      },
+      {
+        icon: Search,
+        title: "Positive & Negative Tests",
+        description: "Valid and invalid scenarios to verify API robustness"
+      },
+      {
+        icon: FileText,
+        title: "JSON Schema Validation",
+        description: "Consistent response structure checks across endpoints"
+      },
+      {
+        icon: Bug,
+        title: "Error Handling",
+        description: "Boundary conditions and error responses for edge cases"
+      }
+    ],
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/KristoPraveejiny/REST-API-Testing-ReqRes-API",
+        icon: Github,
+        variant: "primary"
+      },
+      {
+        label: "View Collection",
+        icon: ExternalLink,
+        variant: "outline"
+      }
+    ]
   },
   {
-    icon: Calendar,
-    title: "Live Project Tracking",
-    description: "Real-time dashboard to monitor ongoing project progress"
+    role: "Manual QA Tester",
+    title: "Buggy Cars Rating - Manual Testing",
+    description:
+      "Designed and documented manual test scenarios and test cases for the Buggy Cars Rating web application.",
+    overview:
+      "Executed positive and negative test cases, compared expected and actual results, and documented defects and test execution outcomes using Excel.",
+    badges: ["Manual Testing", "Excel Documentation", "Bug Reports"],
+    techStack: [
+      { name: "Manual Testing", color: "bg-purple-500/15 text-purple-200 border-purple-300/35" },
+      { name: "Excel", color: "bg-green-500/15 text-green-200 border-green-300/35" },
+      { name: "Test Documentation", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" },
+      { name: "Defect Tracking", color: "bg-red-500/15 text-red-200 border-red-300/35" }
+    ],
+    features: [
+      {
+        icon: FileText,
+        title: "Test Scenarios",
+        description: "Comprehensive manual scenarios for the application"
+      },
+      {
+        icon: TestTube,
+        title: "Test Cases",
+        description: "Detailed coverage across functional requirements"
+      },
+      {
+        icon: Bug,
+        title: "Bug Reports",
+        description: "Defects documented with reproduction details and severity"
+      },
+      {
+        icon: CheckCircle,
+        title: "Positive & Negative Testing",
+        description: "Balanced execution of valid and invalid flows"
+      },
+      {
+        icon: Search,
+        title: "Expected vs Actual Results",
+        description: "Clear comparison of expected and observed outcomes"
+      },
+      {
+        icon: Database,
+        title: "Excel Documentation",
+        description: "Structured test records and execution reports in Excel"
+      }
+    ],
+    links: [
+      {
+        label: "GitHub Repository",
+        href: "https://github.com/KristoPraveejiny/Buggy-Cars-Rating-Manual-Testing",
+        icon: Github,
+        variant: "primary"
+      }
+    ]
   },
   {
-    icon: MessageSquare,
-    title: "Reviews & Testimonials",
-    description: "Customer feedback and rating system for service providers"
+    role: "QA Tester",
+    title: "SauceDemo - Manual & Automation Testing",
+    description:
+      "Conducted manual testing and automated critical e-commerce workflows using Selenium WebDriver with Java and TestNG.",
+    overview:
+      "Developed automation scripts, validated application behavior using assertions, and applied Selenium locators and explicit waits for reliable test execution.",
+    badges: ["Java", "Selenium", "TestNG"],
+    techStack: [
+      { name: "Java", color: "bg-red-500/15 text-red-200 border-red-300/35" },
+      { name: "Selenium", color: "bg-green-500/15 text-green-200 border-green-300/35" },
+      { name: "TestNG", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
+      { name: "Manual Testing", color: "bg-purple-500/15 text-purple-200 border-purple-300/35" }
+    ],
+    features: [
+      {
+        icon: TestTube,
+        title: "Automated E-Commerce Flows",
+        description: "Login, product selection, and checkout workflows"
+      },
+      {
+        icon: Code2,
+        title: "Selenium WebDriver",
+        description: "Reliable automation scripts with Java and TestNG"
+      },
+      {
+        icon: Shield,
+        title: "Assertions & Validations",
+        description: "Behavior checks and data integrity validations"
+      },
+      {
+        icon: Search,
+        title: "Selenium Locators",
+        description: "Multiple locator strategies for stable element targeting"
+      },
+      {
+        icon: CheckCircle,
+        title: "Explicit Waits",
+        description: "Dynamic element handling for stable execution"
+      },
+      {
+        icon: FileText,
+        title: "Manual Test Cases",
+        description: "Manual scenarios supporting end-to-end coverage"
+      }
+    ],
+    links: [
+      {
+        label: "Automation Repository",
+        href: "https://github.com/KristoPraveejiny/SauceDemo-Automation",
+        icon: Github,
+        variant: "primary"
+      },
+      {
+        label: "Manual Testing Repository",
+        href: "https://github.com/KristoPraveejiny/SauceDemo-Manual-Testing",
+        icon: Github,
+        variant: "outline"
+      }
+    ]
   },
   {
-    icon: Briefcase,
-    title: "Portfolio Showcase",
-    description: "Service providers can display their work and past projects"
-  },
-  {
-    icon: LayoutDashboard,
-    title: "Admin Panel",
-    description: "Comprehensive dashboard for managing users and services"
+    role: "Full Stack Developer & QA Testing Practice",
+    title: "Annam Integrated Farm Management System",
+    description:
+      "Developed an integrated farm management web application using HTML, CSS, JavaScript, PHP, and MySQL.",
+    overview:
+      "Created manual test scenarios and test cases in Excel for Customer Signup, Provider Signup, Customer Login, Provider Login, and Customer Dashboard modules, and executed positive and negative test cases.",
+    badges: ["HTML", "PHP", "MySQL"],
+    techStack: [
+      { name: "HTML", color: "bg-orange-500/15 text-orange-200 border-orange-300/35" },
+      { name: "CSS", color: "bg-sky-500/15 text-sky-200 border-sky-300/35" },
+      { name: "JavaScript", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
+      { name: "PHP", color: "bg-indigo-500/15 text-indigo-200 border-indigo-300/35" },
+      { name: "MySQL", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" },
+      { name: "Excel", color: "bg-green-500/15 text-green-200 border-green-300/35" }
+    ],
+    features: [
+      {
+        icon: Users,
+        title: "Customer & Provider Signup",
+        description: "Dual registration flows with validation"
+      },
+      {
+        icon: Shield,
+        title: "Login Modules",
+        description: "Secure authentication for Customer and Provider roles"
+      },
+      {
+        icon: LayoutDashboard,
+        title: "Customer Dashboard",
+        description: "Dashboard for managing farm-related activities and services"
+      },
+      {
+        icon: TestTube,
+        title: "Manual Test Scenarios",
+        description: "Comprehensive Excel-based test planning for each module"
+      },
+      {
+        icon: CheckCircle,
+        title: "Positive & Negative Testing",
+        description: "Valid and invalid test cases for robust coverage"
+      },
+      {
+        icon: Bug,
+        title: "Defect Documentation",
+        description: "Execution results and defects captured for resolution"
+      }
+    ],
+    links: [
+      {
+        label: "Development Repository",
+        href: "https://github.com/KristoPraveejiny/Annam-Integrated-Farm-Management-System",
+        icon: Github,
+        variant: "primary"
+      },
+      {
+        label: "Testing Repository",
+        href: "https://github.com/KristoPraveejiny/Annam-Farm-Manual-Testing",
+        icon: Github,
+        variant: "outline"
+      }
+    ]
   }
 ]
 
-const techStack = [
-  { name: "PHP", color: "bg-indigo-500/15 text-indigo-200 border-indigo-300/35" },
-  { name: "MySQL", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" },
-  { name: "HTML", color: "bg-orange-500/15 text-orange-200 border-orange-300/35" },
-  { name: "CSS", color: "bg-sky-500/15 text-sky-200 border-sky-300/35" },
-  { name: "JavaScript", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
-  { name: "XAMPP", color: "bg-amber-500/15 text-amber-200 border-amber-300/35" }
-]
+function ProjectActionButton({ link }: { link: ProjectLink }) {
+  const buttonClasses =
+    link.variant === "primary"
+      ? "gap-2 neon-button bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400"
+      : "gap-2 neon-button"
 
-const financeFeatures = [
-  {
-    icon: LayoutDashboard,
-    title: "Role-Based Access",
-    description: "Secure login flows for Admin, User, and Investor roles with tailored dashboards"
-  },
-  {
-    icon: Calendar,
-    title: "Income & Expense Tracking",
-    description: "Real-time entry management for income, expenses, and categorized financial records"
-  },
-  {
-    icon: MessageSquare,
-    title: "AI Insights",
-    description: "Predictive analysis for future income and expenses using machine learning models"
-  },
-  {
-    icon: FileText,
-    title: "Financial Reports",
-    description: "Profit margins, expense breakdowns, and summary views for better decision-making"
-  },
-  {
-    icon: Users,
-    title: "Secure Multi-User System",
-    description: "Structured access control designed for multiple user types in one platform"
-  },
-  {
-    icon: Briefcase,
-    title: "Responsive Dashboard",
-    description: "Modern dark-themed UI with charts and analytics optimized for all devices"
+  if (link.href) {
+    return (
+      <Button asChild size="sm" className={buttonClasses}>
+        <Link href={link.href} target="_blank" rel="noopener noreferrer">
+          <link.icon className="h-4 w-4" />
+          {link.label}
+        </Link>
+      </Button>
+    )
   }
-]
 
-const financeTechStack = [
-  { name: "HTML", color: "bg-orange-500/15 text-orange-200 border-orange-300/35" },
-  { name: "CSS", color: "bg-sky-500/15 text-sky-200 border-sky-300/35" },
-  { name: "JavaScript", color: "bg-yellow-500/15 text-yellow-200 border-yellow-300/35" },
-  { name: "PHP", color: "bg-indigo-500/15 text-indigo-200 border-indigo-300/35" },
-  { name: "MySQL", color: "bg-blue-500/15 text-blue-200 border-blue-300/35" },
-  { name: "Python (ML)", color: "bg-emerald-500/15 text-emerald-200 border-emerald-300/35" }
-]
+  return (
+    <Button size="sm" variant="outline" className={buttonClasses} disabled>
+      <link.icon className="h-4 w-4" />
+      {link.label}
+    </Button>
+  )
+}
+
+function ProjectCard({ project, index, isVisible }: { project: Project; index: number; isVisible: boolean }) {
+  return (
+    <Card
+      className="overflow-hidden card-hover rounded-2xl transition-all duration-700 neon-panel neon-border mt-10"
+      style={{
+        transitionDelay: `${200 + index * 120}ms`,
+        opacity: isVisible ? 1 : 0,
+        transform: isVisible ? "translateY(0)" : "translateY(32px)"
+      }}
+    >
+      {project.featured ? (
+        <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-6 py-3 border-b border-primary/20">
+          <div className="flex items-center gap-2">
+            <Star className="h-4 w-4 text-primary fill-primary" />
+            <span className="text-sm font-medium text-primary">Featured Project</span>
+          </div>
+        </div>
+      ) : null}
+
+      <CardHeader className="pb-4 pt-6">
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-0 neon-chip">
+            {project.role}
+          </Badge>
+          {project.badges.map((badge) => (
+            <Badge key={badge} variant="outline" className="neon-chip">
+              {badge}
+            </Badge>
+          ))}
+        </div>
+
+        <CardTitle className="text-2xl md:text-3xl">{project.title}</CardTitle>
+        <CardDescription className="text-base md:text-lg">{project.description}</CardDescription>
+
+        <div className="flex flex-wrap gap-3 mt-4">
+          {project.links.map((link) => (
+            <ProjectActionButton key={link.label} link={link} />
+          ))}
+        </div>
+      </CardHeader>
+
+      <CardContent className="space-y-8 pb-8">
+        <div className="p-5 rounded-xl bg-secondary/40 border border-primary/20">
+          <h4 className="font-semibold mb-3 flex items-center gap-2">
+            <span className="w-1 h-5 bg-primary rounded-full" />
+            Project Overview
+          </h4>
+          <p className="text-muted-foreground leading-relaxed">{project.overview}</p>
+        </div>
+
+        <div>
+          <h4 className="font-semibold mb-4 flex items-center gap-2">
+            <span className="w-1 h-5 bg-primary rounded-full" />
+            Technical Implementation
+          </h4>
+          <div className="flex flex-wrap gap-2">
+            {project.techStack.map((tech) => (
+              <Badge key={tech.name} variant="outline" className={`${tech.color} border font-medium px-3 py-1 neon-chip`}>
+                {tech.name}
+              </Badge>
+            ))}
+          </div>
+        </div>
+
+        <div>
+          <h4 className="font-semibold mb-4 flex items-center gap-2">
+            <span className="w-1 h-5 bg-primary rounded-full" />
+            Key Features
+          </h4>
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {project.features.map((feature, featureIndex) => (
+              <div
+                key={feature.title}
+                className={`group p-5 rounded-xl neon-panel neon-border hover:border-primary/45 transition-all duration-300 hover:-translate-y-1 ${
+                  isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+                }`}
+                style={{ transitionDelay: `${400 + index * 120 + featureIndex * 80}ms` }}
+              >
+                <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
+                  <feature.icon className="h-5 w-5 text-primary" />
+                </div>
+                <h5 className="font-medium mb-1.5">{feature.title}</h5>
+                <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </CardContent>
+    </Card>
+  )
+}
 
 export function Projects() {
   const [isVisible, setIsVisible] = useState(false)
@@ -113,208 +492,21 @@ export function Projects() {
   }, [])
 
   return (
-    <section 
-      ref={sectionRef}
-      id="projects" 
-      className="py-24 px-6 section-divider relative overflow-hidden"
-    >
+    <section ref={sectionRef} id="projects" className="py-24 px-6 section-divider relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+        <div className={`text-center mb-16 transition-all duration-700 ${isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
           <span className="inline-block px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-medium mb-4 neon-chip">
             Featured Work
           </span>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">
-            Projects
-          </h2>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4">Projects</h2>
           <p className="text-muted-foreground max-w-2xl mx-auto">
-            Showcasing my latest and most impactful development work
+            Showcasing my latest and most impactful testing and development work
           </p>
         </div>
 
-        <Card 
-          className={`overflow-hidden card-hover rounded-2xl transition-all duration-700 delay-200 neon-panel neon-border ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
-          {/* Featured Badge */}
-          <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-6 py-3 border-b border-primary/20">
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-primary fill-primary" />
-              <span className="text-sm font-medium text-primary">Featured Project</span>
-            </div>
-          </div>
-
-          <CardHeader className="pb-4 pt-6">
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-0 neon-chip">
-                Full-Stack
-              </Badge>
-              <Badge variant="outline" className="neon-chip">
-                Web Platform
-              </Badge>
-              <Badge variant="outline" className="neon-chip">
-                Service Management
-              </Badge>
-            </div>
-            <CardTitle className="text-2xl md:text-3xl">
-              Innovista
-            </CardTitle>
-            <CardDescription className="text-base md:text-lg">
-              Interior Design, Painting & Restoration Service Platform
-            </CardDescription>
-            
-            <div className="flex flex-wrap gap-3 mt-4">
-              <Button asChild size="sm" className="gap-2 neon-button bg-gradient-to-r from-blue-600 to-blue-500 hover:from-blue-500 hover:to-blue-400">
-                <Link href="https://github.com/KristoPraveejiny/Innovista-final.git" target="_blank" rel="noopener noreferrer">
-                  <Github className="h-4 w-4" />
-                  View Source Code
-                </Link>
-              </Button>
-            </div>
-          </CardHeader>
-          
-          <CardContent className="space-y-8 pb-8">
-            {/* Project Overview */}
-            <div className="p-5 rounded-xl bg-secondary/40 border border-primary/20">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Project Overview
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                Innovista is a full-stack web application designed to connect customers with trusted 
-                interior designers and service providers. The platform allows users to request quotations, 
-                book services, track project progress, and manage all service-related activities in one place. 
-                Built with a modular PHP structure and secure database access using PDO.
-              </p>
-            </div>
-
-            {/* Tech Stack */}
-            <div>
-              <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Technical Implementation
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {techStack.map((tech) => (
-                  <Badge 
-                    key={tech.name} 
-                    variant="outline"
-                    className={`${tech.color} border font-medium px-3 py-1 neon-chip`}
-                  >
-                    {tech.name}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            {/* Key Features */}
-            <div>
-              <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Key Features
-              </h4>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {features.map((feature, index) => (
-                  <div 
-                    key={feature.title}
-                    className={`group p-5 rounded-xl neon-panel neon-border hover:border-primary/45 transition-all duration-300 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                    style={{ transitionDelay: `${400 + index * 100}ms` }}
-                  >
-                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                      <feature.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h5 className="font-medium mb-1.5">{feature.title}</h5>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
-
-        <Card
-          className={`overflow-hidden card-hover rounded-2xl transition-all duration-700 delay-300 neon-panel neon-border mt-10 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-        >
-          <div className="bg-gradient-to-r from-primary/20 via-primary/10 to-transparent px-6 py-3 border-b border-primary/20">
-            <div className="flex items-center gap-2">
-              <Star className="h-4 w-4 text-primary fill-primary" />
-              <span className="text-sm font-medium text-primary">Featured Project</span>
-            </div>
-          </div>
-
-          <CardHeader className="pb-4 pt-6">
-            <div className="flex flex-wrap items-center gap-2 mb-3">
-              <Badge className="bg-primary/10 text-primary hover:bg-primary/20 border-0 neon-chip">
-                Full-Stack
-              </Badge>
-              <Badge variant="outline" className="neon-chip">
-                Analytics Platform
-              </Badge>
-              <Badge variant="outline" className="neon-chip">
-                AI-Powered Finance
-              </Badge>
-            </div>
-            <CardTitle className="text-2xl md:text-3xl">
-              Smart Finance Monitoring Dashboard
-            </CardTitle>
-            <CardDescription className="text-base md:text-lg">
-              Smart financial management system with analytics, predictions, and interactive dashboards
-            </CardDescription>
-          </CardHeader>
-
-          <CardContent className="space-y-8 pb-8">
-            <div className="p-5 rounded-xl bg-secondary/40 border border-primary/20">
-              <h4 className="font-semibold mb-3 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Project Overview
-              </h4>
-              <p className="text-muted-foreground leading-relaxed">
-                The Smart Finance Monitoring Dashboard is a full-stack financial management system designed
-                to help users track expenses, analyze income, and receive AI-powered financial insights.
-                It combines secure multi-user access, structured financial records, real-time analytics,
-                and predictive forecasting to support better money decisions.
-              </p>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Technical Implementation
-              </h4>
-              <div className="flex flex-wrap gap-2">
-                {financeTechStack.map((tech) => (
-                  <Badge
-                    key={tech.name}
-                    variant="outline"
-                    className={`${tech.color} border font-medium px-3 py-1 neon-chip`}
-                  >
-                    {tech.name}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-
-            <div>
-              <h4 className="font-semibold mb-4 flex items-center gap-2">
-                <span className="w-1 h-5 bg-primary rounded-full"></span>
-                Key Features
-              </h4>
-              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                {financeFeatures.map((feature, index) => (
-                  <div
-                    key={feature.title}
-                    className={`group p-5 rounded-xl neon-panel neon-border hover:border-primary/45 transition-all duration-300 hover:-translate-y-1 ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}
-                    style={{ transitionDelay: `${500 + index * 100}ms` }}
-                  >
-                    <div className="h-10 w-10 rounded-lg bg-primary/10 flex items-center justify-center mb-3 group-hover:bg-primary/20 transition-colors">
-                      <feature.icon className="h-5 w-5 text-primary" />
-                    </div>
-                    <h5 className="font-medium mb-1.5">{feature.title}</h5>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </CardContent>
-        </Card>
+        {projects.map((project, index) => (
+          <ProjectCard key={project.title} project={project} index={index} isVisible={isVisible} />
+        ))}
       </div>
     </section>
   )

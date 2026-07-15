@@ -6,7 +6,8 @@ import { Button } from "@/components/ui/button"
 import { ArrowDown, Mail, BookOpen, Shield, Target } from "lucide-react"
 
 export function Hero() {
-  const [profileSrc, setProfileSrc] = useState("/profile.jpg")
+  const profileCandidates = ["/profile.jpg", "/profile.jpeg", "/profile.png", "/profile.webp", "/placeholder-user.jpg"]
+  const [profileIndex, setProfileIndex] = useState(0)
 
   const scrollToSection = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
@@ -42,12 +43,14 @@ export function Hero() {
             <div className="relative">
               <div className="w-40 h-40 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary/20 shadow-2xl ring-4 ring-primary/10 ring-offset-4 ring-offset-background">
                 <Image
-                  src={profileSrc}
+                  src={profileCandidates[profileIndex]}
                   alt="Sabaratnam Kristo Praveejiny - Software QA & Full-Stack Developer"
                   width={192}
                   height={192}
                   className="object-cover object-top w-full h-full"
-                  onError={() => setProfileSrc("/placeholder-user.jpg")}
+                  onError={() => {
+                    setProfileIndex((prev) => (prev < profileCandidates.length - 1 ? prev + 1 : prev))
+                  }}
                   priority
                 />
               </div>
